@@ -1,5 +1,6 @@
 (ns fetch.remotes
-  (:require [fetch.core :as core]))
+  (:require [fetch.core :as core]
+            [cljs.reader :as reader]))
 
 (def remote-uri "/pinotremotecall")
 
