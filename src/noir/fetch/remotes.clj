@@ -1,4 +1,4 @@
-(ns noir.fetch.remote)
+(ns noir.fetch.remotes)
 
 (def remote-regex #"/pinotremotecall")
 (def remotes (atom {}))
@@ -28,9 +28,12 @@
 
 (defn wrap-remotes [handler]
   (fn [{:keys [uri body] :as req}]
+    (println (slurp (:body req)))
     (if (re-seq remote-regex uri)
-      (let [{:keys [remote params]} (safe-read (slurp body))
+      (let [{:keys [remote params]} (:params req)
+            params (safe-read params)
             remote (keyword remote)]
+        (println "calling the remote: " remote)
         (call-remote remote params))
       (handler req))))
 

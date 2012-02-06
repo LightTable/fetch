@@ -6,10 +6,8 @@
 
 (defn remote-callback [remote params callback]
   (core/xhr [:post remote-uri] 
-            (pr-str {:remote remote
-                     :params params})
+            {:remote remote
+             :params (pr-str params)}
             (when callback
               (fn [data]
-                (callback (reader/read-string data))))
-            {"Content-Type" 
-             "application/clojure;charset=utf-8"}))
+                (callback (reader/read-string data))))))
