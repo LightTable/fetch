@@ -18,8 +18,9 @@
     :else ["GET" route]))
 
 (defn ->data [d]
-  (let [cur (util/map->js d)]
-    (query-data/createFromMap (structs/Map. cur))))
+  (let [cur (util/clj->js d)
+        query (query-data/createFromMap (structs/Map. cur))]
+    (str query)))
 
 (defn ->callback [callback]
   (when callback
@@ -34,4 +35,4 @@
         callback (->callback callback)]
     (when callback
       (events/listen req goog.net.EventType/COMPLETE #(callback req)))
-    (. req (send uri method data (when opts (util/map->js opts))))))
+    (. req (send uri method data (when opts (util/clj->js opts))))))
