@@ -22,9 +22,10 @@
     (query-data/createFromMap (structs/Map. cur))))
 
 (defn ->callback [callback]
-  (fn [req]
-    (let [data (. req (getResponseText))]
-      (callback data))))
+  (when callback
+    (fn [req]
+      (let [data (. req (getResponseText))]
+        (callback data)))))
 
 (defn xhr [route content callback & [opts]]
   (let [req (new goog.net.XhrIo)

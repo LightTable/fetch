@@ -10,4 +10,5 @@
              :params (pr-str params)}
             (when callback
               (fn [data]
-                (callback (reader/read-string data))))))
+                (let [data (if (= data "") "nil" data)]
+                  (callback (reader/read-string data)))))))

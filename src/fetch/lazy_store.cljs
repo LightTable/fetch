@@ -18,7 +18,8 @@
   (let [ks (->vector ks)]
     (core/xhr [:post "/lazy-store"] {:ks (pr-str ks)}
               (fn [data]
-                (let [d (read-string data)]
+                (let [data (if (= data "") "nil" data)
+                      d (read-string data)]
                   (set ks d)
                   (callback d))))))
 
