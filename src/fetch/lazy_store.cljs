@@ -1,4 +1,4 @@
-(ns fetch.lazy-store 
+(ns fetch.lazy-store
   (:refer-clojure :exclude [get set])
   (:require [fetch.core :as core])
   (:use [cljs.reader :only [read-string]]))

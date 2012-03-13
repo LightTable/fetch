@@ -1,6 +1,6 @@
-(ns noir.fetch.remotes)
+(ns noir.fetch.remotes
+  (:use [noir.core :only [defpage]]))
 
-(def remote-regex #"/pinotremotecall")
 (def remotes (atom {}))
 
 (defn get-remote [remote]
@@ -27,10 +27,10 @@
     {:status 404}))
 
 (defn wrap-remotes [handler]
-  (fn [{:keys [uri body] :as req}]
-    (if (re-seq remote-regex uri)
-      (let [{:keys [remote params]} (:params req)
-            params (safe-read params)
-            remote (keyword remote)]
-        (call-remote remote params))
-      (handler req))))
+  (println "*** fetch/wrap-remotes is no longer needed. Please remove it ***")
+  handler)
+
+(defpage [:any "/_fetch"] {:keys [remote params]}
+  (let [params (safe-read params)
+        remote (keyword remote)]
+    (call-remote remote params)))

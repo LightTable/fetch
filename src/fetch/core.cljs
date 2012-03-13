@@ -1,4 +1,4 @@
-(ns fetch.core 
+(ns fetch.core
   (:require [goog.net.XhrIo :as xhr]
             [clojure.string :as string]
             [fetch.util :as util]
