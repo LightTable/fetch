@@ -39,8 +39,6 @@ The noir side of things is just as simple. All you do is declare a remote using 
            {:username "Chris"
             :age 24})
 
-(server/add-middleware wrap-remotes)
-
 (server/start 8080)
 ```
 
