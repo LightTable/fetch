@@ -1,4 +1,5 @@
 (ns noir.fetch.remotes
+  (:require [clojure.edn :as edn])
   (:use [noir.core :only [defpage]]))
 
 (def remotes (atom {}))
@@ -10,8 +11,7 @@
   (swap! remotes assoc remote func))
 
 (defn safe-read [s]
-  (binding [*read-eval* false]
-    (read-string s)))
+  (edn/read-string s))
 
 (defmacro defremote [remote params & body]
   `(do
