@@ -1,5 +1,6 @@
 (ns noir.fetch.remotes
-  (:use [noir.core :only [defpage]]))
+  (:require [clojure.edn :as edn]
+            [compojure.core :refer :all]))
 
 (def remotes (atom {}))
 
@@ -10,8 +11,7 @@
   (swap! remotes assoc remote func))
 
 (defn safe-read [s]
-  (binding [*read-eval* false]
-    (read-string s)))
+  (edn/read-string s))
 
 (defmacro defremote [remote params & body]
   `(do
@@ -30,7 +30,8 @@
   (println "*** fetch/wrap-remotes is no longer needed. Please remove it ***")
   handler)
 
-(defpage [:any "/_fetch"] {:keys [remote params]}
-  (let [params (safe-read params)
-        remote (keyword remote)]
-    (call-remote remote params)))
+(defroutes fetch-routes
+  (ANY "/_fetch" [remote params]
+       (let [params (safe-read params)
+             remote (keyword remote)]
+         (call-remote remote params))))
