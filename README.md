@@ -44,6 +44,6 @@ The noir side of things is just as simple. All you do is declare a remote using 
 
 ## License
 
-Copyright (C) 2012 Chris Granger
+Copyright (c) 2014 Kodowa, Inc. & Light Table contributors
 
-Distributed under the Eclipse Public License, the same as Clojure.
+Distributed under the MIT License. See LICENSE.md
