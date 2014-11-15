@@ -1,7 +1,6 @@
 (ns fetch.core
   (:require [goog.net.XhrIo :as xhr]
             [clojure.string :as string]
-            [fetch.util :as util]
             [cljs.reader :as reader]
             [goog.events :as events]
             [goog.Uri.QueryData :as query-data]
