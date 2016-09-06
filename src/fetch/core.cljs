@@ -3,6 +3,7 @@
             [clojure.string :as string]
             [cljs.reader :as reader]
             [goog.events :as events]
+            [goog.net.EventType :as EventType]
             [goog.Uri.QueryData :as query-data]
             [goog.structs :as structs]))
 
