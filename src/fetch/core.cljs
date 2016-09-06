@@ -1,9 +1,8 @@
 (ns fetch.core
-  (:require [goog.net.XhrIo :as xhr]
-            [clojure.string :as string]
+  (:require [clojure.string :as string]
+            [clojure.browser.net :as net]
+            [clojure.browser.event :as event]
             [cljs.reader :as reader]
-            [goog.events :as events]
-            [goog.net.EventType :as EventType]
             [goog.Uri.QueryData :as query-data]
             [goog.structs :as structs]))
 
@@ -29,10 +28,10 @@
         (callback data)))))
 
 (defn xhr [route content callback & [opts]]
-  (let [req (new goog.net.XhrIo)
+  (let [req (net/xhr-connection)
         [method uri] (parse-route route)
         data (->data content)
         callback (->callback callback)]
     (when callback
-      (events/listen req goog.net.EventType/COMPLETE #(callback req)))
-    (. req (send uri method data (when opts (clj->js opts))))))
+      (event/listen req :success #(callback req)))
+    (net/transmit req uri method data (when opts (clj->js opts)))))
