@@ -1,4 +1,4 @@
-(defproject fetch "0.2.2"
+(defproject fetch "0.3.0"
   :description "A ClojureScript and Noir library to make client-server interaction painless."
   :url "https://github.com/LightTable/fetch"
   :license {:name "MIT License"}
