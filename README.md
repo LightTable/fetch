@@ -4,7 +4,7 @@ A ClojureScript library that makes client/server interaction painless.
 
 ## Usage
 
-###Remotes
+### Remotes
 
 Remotes let you make calls to a noir server without having to think about XHR. On the client-side you simply have code that looks like this:
 
