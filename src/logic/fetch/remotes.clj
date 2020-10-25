@@ -1,5 +1,5 @@
-(ns noir.fetch.remotes
-  (:use [noir.core :only [defpage]]))
+(ns logic.fetch.remotes
+  (:use [logic.fetch.macros :only [defpage]]))
 
 (def remotes (atom {}))
 
