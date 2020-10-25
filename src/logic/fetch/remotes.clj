@@ -1,5 +1,5 @@
-(ns noir.fetch.remotes
-  (:use [noir.core :only [defpage]]))
+(ns logic.fetch.remotes
+  (:use [logic.fetch.macros :only [defpage]]))
 
 (def remotes (atom {}))
 
@@ -9,6 +9,7 @@
 (defn add-remote [remote func]
   (swap! remotes assoc remote func))
 
+;; Unsafe way to do this, Fix later: 1st priority.
 (defn safe-read [s]
   (binding [*read-eval* false]
     (read-string s)))
